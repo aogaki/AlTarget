@@ -2,10 +2,10 @@ TH1D *his;
 
 void test()
 {
-  his = new TH1D("his", "Energy distribution of #it{#gamma}", 300, 0., 300.);
+  his = new TH1D("his", "Energy distribution of #it{e^{-}}: Al plate T 70 mm", 150, 0., 150.);
   his->SetXTitle("[MeV]");
 
-  auto file = new TFile("../result.root", "READ");
+  auto file = new TFile("../resultT70.root", "READ");
   auto tree = (TTree *)file->Get("AlTarget");
   tree->SetBranchStatus("*", kFALSE);
 
@@ -24,7 +24,7 @@ void test()
   const auto nParticles = tree->GetEntries();
   for (auto i = 0; i < nParticles; i++) {
     tree->GetEntry(i);
-    if (pdg == 22 && ene > 0. && Pz > 0.) {  // PDG code 22 is Gamma.
+    if (pdg == 11 && ene > 0. && Pz > 0.) {  // PDG code 22 is Gamma.
       his->Fill(ene);
     }
   }

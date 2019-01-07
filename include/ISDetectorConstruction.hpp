@@ -32,6 +32,7 @@ class ISDetectorConstruction : public G4VUserDetectorConstruction
   G4Material *fTargetMat;
 
   G4double fTargetT;
+  G4double fTargetSize;
   G4VPhysicalVolume *fTargetPV;
 
   std::vector<G4VisAttributes *> fVisAttributes;

@@ -16,7 +16,9 @@ ISDetectorConstruction::ISDetectorConstruction() : fVacuumMat(nullptr)
 {
   fCheckOverlap = true;
 
-  fTargetT = 7. * cm;
+  // fTargetT = 7. * cm;
+  fTargetT = 3.5 * mm;
+  fTargetSize = 1. * mm;
 
   DefineMaterials();
   DefineCommands();
@@ -30,15 +32,16 @@ void ISDetectorConstruction::DefineMaterials()
 
   // NIST database materials
   fVacuumMat = manager->FindOrBuildMaterial("G4_Galactic");
-  fTargetMat = manager->FindOrBuildMaterial("G4_Al");
+  // fTargetMat = manager->FindOrBuildMaterial("G4_Al");
+  fTargetMat = manager->FindOrBuildMaterial("G4_W");
 }
 
 G4VPhysicalVolume *ISDetectorConstruction::Construct()
 {
   // world volume
-  G4double worldX = 1. * m;
-  G4double worldY = 1. * m;
-  G4double worldZ = 1. * m;
+  G4double worldX = 10. * cm;
+  G4double worldY = 10. * cm;
+  G4double worldZ = 10. * cm;
 
   G4Box *worldS = new G4Box("World", worldX / 2., worldY / 2., worldZ / 2.);
   G4LogicalVolume *worldLV = new G4LogicalVolume(worldS, fVacuumMat, "World");
@@ -49,7 +52,8 @@ G4VPhysicalVolume *ISDetectorConstruction::Construct()
   fVisAttributes.push_back(visAttributes);
 
   // Al target
-  auto targetS = new G4Box("Target", worldX / 2., worldY / 2., fTargetT / 2.);
+  auto targetS =
+      new G4Box("Target", fTargetSize / 2., fTargetSize / 2., fTargetT / 2.);
   auto targetLV = new G4LogicalVolume(targetS, fTargetMat, "Target");
   visAttributes = new G4VisAttributes(G4Colour::Cyan());
   targetLV->SetVisAttributes(visAttributes);
