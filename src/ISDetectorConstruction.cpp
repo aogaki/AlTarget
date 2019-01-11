@@ -17,8 +17,8 @@ ISDetectorConstruction::ISDetectorConstruction() : fVacuumMat(nullptr)
   fCheckOverlap = true;
 
   // fTargetT = 7. * cm;
-  fTargetT = 3.5 * mm;
-  fTargetSize = 1. * mm;
+  fTargetT = 50. * mm;
+  fTargetSize = 30. * mm;
 
   DefineMaterials();
   DefineCommands();

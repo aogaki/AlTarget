@@ -11,3 +11,4 @@ Makefile
 result*.root
 tmp.*
 Makefile
+Data*.root

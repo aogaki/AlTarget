@@ -1,12 +1,10 @@
 #!/bin/bash
 
-nEvents=300000000
+nEvents=1000000000
+echo "/run/beamOn $nEvents" > tmp.mac
 
-for T in 70 7
+for (( i=0; i<100; i++ ))
 do
-  echo "/InSb/Geo/T $T" > tmp.mac
-  echo "/run/beamOn $nEvents" >> tmp.mac
-
   ./example tmp.mac
-  hadd -f "resultT$T".root result_t*
+  hadd -f "result$i".root result_t*
 done

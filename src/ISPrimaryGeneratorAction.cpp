@@ -23,7 +23,7 @@ ISPrimaryGeneratorAction::ISPrimaryGeneratorAction()
   auto particle = parTable->FindParticle("e-");
   fParticleGun->SetParticleDefinition(particle);
 
-  auto sourcePos = -1. * cm - ((3.5 / 2.) * mm);
+  auto sourcePos = -10. * mm - ((50. / 2.) * mm);
   fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., sourcePos));
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
 
