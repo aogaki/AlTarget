@@ -26,6 +26,14 @@ ISRunAction::ISRunAction() : G4UserRunAction()
   anaMan->CreateNtupleIColumn("PDGCode");
 
   anaMan->FinishNtuple();
+
+  anaMan->CreateNtuple("Init", "Primary particle");
+  anaMan->CreateNtupleIColumn("eveID");
+  anaMan->CreateNtupleDColumn("Px");
+  anaMan->CreateNtupleDColumn("Py");
+  anaMan->CreateNtupleDColumn("Pz");
+  anaMan->CreateNtupleDColumn("KineticEnergy");
+  anaMan->FinishNtuple();
 }
 
 ISRunAction::~ISRunAction() { delete G4AnalysisManager::Instance(); }

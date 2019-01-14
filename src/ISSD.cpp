@@ -33,10 +33,11 @@ G4bool ISSD::ProcessHits(G4Step *step, G4TouchableHistory * /*history*/)
   // Only recording at boundary
   G4StepPoint *postStepPoint = step->GetPostStepPoint();
   if (postStepPoint->GetStepStatus() != fGeomBoundary) return false;
+  G4ThreeVector position = postStepPoint->GetPosition();
+  if (position[2] != 2.5 * cm) return false;
 
   auto newHit = new ISHit();
 
-  G4ThreeVector position = postStepPoint->GetPosition();
   newHit->SetPosition(position);
 
   G4ThreeVector momentum = postStepPoint->GetMomentum();

@@ -32,8 +32,8 @@ void ISDetectorConstruction::DefineMaterials()
 
   // NIST database materials
   fVacuumMat = manager->FindOrBuildMaterial("G4_Galactic");
-  // fTargetMat = manager->FindOrBuildMaterial("G4_Al");
-  fTargetMat = manager->FindOrBuildMaterial("G4_W");
+  fTargetMat = manager->FindOrBuildMaterial("G4_Al");
+  // fTargetMat = manager->FindOrBuildMaterial("G4_W");
 }
 
 G4VPhysicalVolume *ISDetectorConstruction::Construct()

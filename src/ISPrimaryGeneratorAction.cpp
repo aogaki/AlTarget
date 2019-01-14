@@ -23,7 +23,8 @@ ISPrimaryGeneratorAction::ISPrimaryGeneratorAction()
   auto particle = parTable->FindParticle("e-");
   fParticleGun->SetParticleDefinition(particle);
 
-  auto sourcePos = -10. * mm - ((50. / 2.) * mm);
+  // auto sourcePos = -10. * mm - ((50. / 2.) * mm);
+  auto sourcePos = -0.1 * mm - ((50. / 2.) * mm);
   fParticleGun->SetParticlePosition(G4ThreeVector(0., 0., sourcePos));
   fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
 
@@ -67,6 +68,15 @@ void ISPrimaryGeneratorAction::GeneratePrimaries(G4Event *event)
   fParticleGun->SetParticleEnergy(ene);
   fParticleGun->SetParticleMomentumDirection(parVec);
   fParticleGun->GeneratePrimaryVertex(event);
+
+  G4AnalysisManager *anaMan = G4AnalysisManager::Instance();
+  G4int eventID = event->GetEventID();
+  anaMan->FillNtupleIColumn(1, 0, eventID);
+  anaMan->FillNtupleDColumn(1, 1, vx);
+  anaMan->FillNtupleDColumn(1, 2, vy);
+  anaMan->FillNtupleDColumn(1, 3, vz);
+  anaMan->FillNtupleDColumn(1, 4, ene);
+  anaMan->AddNtupleRow(1);
 
   G4AutoLock lock(&mutexInPGA);
   if (nEveInPGA++ % 10000 == 0)

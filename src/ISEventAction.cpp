@@ -41,24 +41,24 @@ void ISEventAction::EndOfEventAction(const G4Event *event)
   for (G4int iHit = 0; iHit < kHit; iHit++) {
     ISHit *newHit = (*hc)[iHit];
 
-    anaMan->FillNtupleIColumn(0, eventID);
+    anaMan->FillNtupleIColumn(0, 0, eventID);
 
     G4ThreeVector position = newHit->GetPosition();
-    anaMan->FillNtupleDColumn(1, position.x());
-    anaMan->FillNtupleDColumn(2, position.y());
-    anaMan->FillNtupleDColumn(3, position.z());
+    anaMan->FillNtupleDColumn(0, 1, position.x());
+    anaMan->FillNtupleDColumn(0, 2, position.y());
+    anaMan->FillNtupleDColumn(0, 3, position.z());
 
     G4ThreeVector momentum = newHit->GetMomentum();
-    anaMan->FillNtupleDColumn(4, momentum.x());
-    anaMan->FillNtupleDColumn(5, momentum.y());
-    anaMan->FillNtupleDColumn(6, momentum.z());
+    anaMan->FillNtupleDColumn(0, 4, momentum.x());
+    anaMan->FillNtupleDColumn(0, 5, momentum.y());
+    anaMan->FillNtupleDColumn(0, 6, momentum.z());
 
     G4double ene = newHit->GetKineticEnergy();
-    anaMan->FillNtupleDColumn(7, ene);
+    anaMan->FillNtupleDColumn(0, 7, ene);
 
     G4int pdgCode = newHit->GetPDGCode();
-    anaMan->FillNtupleIColumn(8, pdgCode);
+    anaMan->FillNtupleIColumn(0, 8, pdgCode);
 
-    anaMan->AddNtupleRow();
+    anaMan->AddNtupleRow(0);
   }
 }
