@@ -12,3 +12,6 @@ result*.root
 tmp.*
 Makefile
 Data*.root
+*.d
+*.so
+*.pcm
